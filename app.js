@@ -1,5 +1,6 @@
 const fs=require("fs");
 const inquirer=require("inquirer");
+const chalk = require('chalk');
 const Manager=require("./lib/Manager");
 const Engineer=require("./lib/Engineer");
 const Intern=require("./lib/Intern");
@@ -14,19 +15,18 @@ inquirer
     {
     type: "list",
     name: "role",
-    message: "What role do you want to add?",
-    choices: ["Manager", "Engineer", "Intern", "finish"],
+    message: chalk.red("What role do you want to add?"),
+    choices: ["Manager", "Engineer", "Intern", "I am done"],
     },
 
 ]).then(answer=>{
     var selected=answer.role;
-    console.log("role: "+selected);
-    if(selected=="finish"){
-        fs.writeFile("output.html",generateHtml.teamHtml(tempTeamHtml),function(err){
+    if(selected=="I am done"){
+        fs.writeFile("./output/MyTeam.html",generateHtml.teamHtml(tempTeamHtml),function(err){
             if(err){
                  console.log(err);
             }else{
-                console.log("Wrote to file.");
+                console.log(chalk.green("\nSuccessfully created ./output/MyTeam.html\n"));
             }
         });
     }else{
@@ -97,27 +97,23 @@ inquirer
          break;
          
     }
-
-
-
 });
-
 }
 
 
 function addMember(newMemberHtml){
-if(memberCount==0){
-    tempTeamHtml+="\n<div class=\"row\">"+newMemberHtml;
-}else if(memberCount==2){
-     tempTeamHtml+=newMemberHtml+"\n</div>";
-     memberCount=-1;
-}else{
-    tempTeamHtml+="\n"+newMemberHtml;
+    if(memberCount==0){
+        tempTeamHtml+="\n<div class=\"row\">"+newMemberHtml;
+    }else if(memberCount==2){
+        tempTeamHtml+=newMemberHtml+"\n</div>";
+        memberCount=-1;
+    }else{
+        tempTeamHtml+="\n"+newMemberHtml;
+    }
+    memberCount++;
 }
-memberCount++;
-    console.log("count: "+memberCount);
-    console.log(tempTeamHtml);
-}
+
+console.log(chalk.blue("\n\n* * * Welcome! Please add your team members one by one * * *\n"));
 
 createRole();
 

@@ -16,7 +16,7 @@ return `
         color: white;
         font-weight: 500;
         text-align: center;
-        font-size: 45px;;
+        font-size: 45px;
     }
     .container{
         margin-top: 80px;
@@ -79,7 +79,7 @@ function createEngineerhtml(Engineer){
                     <div class="row row-cols-1">
                       <div class="col rounded">ID: ${Engineer.getId()}</div>
                       <div class="col">Email: <a href="#">${Engineer.getEmail()}</a></div>
-                      <div class="col rounded">Github: <a href="#">${Engineer.getGithub()}</a></div>           
+                      <div class="col rounded">Github: <a href="https://github.com/${Engineer.getGithub()}" target="_blank">${Engineer.getGithub()}</a></div>           
                     </div>
         </div>
       </div>`;
