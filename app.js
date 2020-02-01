@@ -15,6 +15,7 @@ inquirer
     {
     type: "list",
     name: "role",
+    
     message: chalk.red("What role do you want to add?"),
     choices: ["Manager", "Engineer", "Intern", "I am done"],
     },
