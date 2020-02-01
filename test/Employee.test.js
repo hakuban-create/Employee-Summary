@@ -2,7 +2,7 @@ const Employee=require("../lib/Employee");
 
 describe("Employee", () => {
     describe("Initialization", () => {
-      it("should create an object with a name and age if provided valid arguments", () => {
+      it("should create Employee object if provided valid arguments", () => {
         const employee1 = new Employee("John",1,"Manager","johnManager1@gmail.com");
   
         expect(employee1.getName()).toEqual("John");
